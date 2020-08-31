@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>aplikasi sederhana menghitung pakan ternak</title>
+<style>
+body{
+  background:salmon;
+}
+/*utuk form*/
+.form{
+  margin-left:8em;
+  margin-top:2em;
+  border:1px solid;
+  padding:15px;
+  width:20em;
+  background:whitesmoke;
+  box-shadow:1px 2px 9px;
+}
+#judul{
+  text-align:center;
+  font-family:san-serif;
+  text-shadow:0px 1px 2px;
+}
+
+/*input pertama*/
+#jumlahTernak{
+  margin-left:5.40em;
+  width:10.5em;
+}
+
+/*input kedua*/
+.kedua{
+  margin-top:5px;
+}
+#jumlahPakan{
+  margin-left:1.5em;
+  width:6.5em;
+}
+#pilih{
+  margin-left:12px;
+}
+
+/*input ketiga*/
+.ketiga{
+  margin-top:5px;
+}
+#targetHabis{
+  margin-left:6.5em;
+  width:5em;
+}
+#pilihKedua{
+	 margin-left:2px;	
+}
+
+/*input keempat*/
+.keempat{
+  margin-top:5px;
+}
+#jumlahInput{
+  margin-left:5em;
+  width:6.5em;
+}
+#pilihKetiga{
+	 margin-left:12px;
+}
+
+/*tombol*/
+.tombol{
+  margin-top:1em;
+  margin-left:11em;
+}
+#hasil{
+  margin-right:1em;
+}
+#hapus{
+  margin-left:1em;
+</style>
+</head>
+<body>
+<div class="form">
+<p id="judul">Aplikasi menghitung pakan ternak</p>
+<!--input one-->
+<div class="pertama">
+  <label>Jumlah ternak</label>
+  <input type="text" id="jumlahTernak">
+</div>
+<!--input two-->
+<div class="kedua">  
+  <label>Jumlah pakan perhari</label>
+     <input type="text" id="jumlahPakan">
+     <select id="pilih">
+         <option id="kg">Kg</option>
+         <option id="g">g</option>
+     </select>
+</div>
+<!--input three-->
+<div class="ketiga">
+  <label>Target habis</label>
+  <input type="text" id="targetHabis">
+  	<select id="pilihKedua">
+  		   <option id="hari">hari</option>
+  		   <option id="minggu">minggu</option>
+  		   <option id="bulan">bulan</option>
+  		   <option id="tahun">tahun</option>
+  		 </select>
+</div>
+<!--input four-->
+<div class="keempat">
+  <label>pasokan pakan</label>
+  <input type="text" id="jumlahInput">
+  	<select id="pilihKetiga">
+  		   <option id="kg_One">Kg</option>
+  		   <option id="g_One">g</option>
+  		  </select>
+</div>
+<!--untuk tombol-->
+<div class="tombol">
+  <button onclick="tombolhasil()"id="hasil">Hasil</button>
+  <button onclick="tombolhapus()"id="hapus">hapus</button>
+</div>
+</div>
+<script>
+function tombolhasil(){
+const jumTernak = document.getElementById('jumlahTernak').value;
+const targetHabis = document.getElementById('targetHabis').value;
+const jumpakan = document.getElementById('jumlahPakan').value;
+const juminput = document.getElementById('jumlahInput').value;
+const g = document.getElementById('g').value;
+const kg = document.getElementById('kg').value;
+const opsi = document.getElementById('pilih').value;
+const opsi_2 = document.getElementById('pilihKedua').value;
+const opsi_3 = document.getElementById('pilihKetiga').value;
+const minggu = document.getElementById('minggu').value;
+const bulan = document.getElementById('bulan').value;
+const tahun = document.getElementById('tahun').value;
+const hari = document.getElementById('hari').value;
+const kg_One = document.getElementById('kg_One').value;
+const g_One = document.getElementById('g_One').value;
+  //opsi pertama
+  if (opsi === kg){                 
+     hasil = jumpakan * 1000;           //untuk mengetahui jumlah pakan pada ternak
+      hasil= hasil * jumTernak;
+      ///opsi kedua
+       if(opsi_2 === hari){                      // memiliki habis pakan
+     	    jumlah = targetHabis * hasil;
+      }else if(opsi_2 === minggu){
+     	    jumlah = targetHabis * 7 * hasil;
+      }else if(opsi_2 === bulan){
+     	    jumlah = targetHabis * 30 * hasil;
+      }else if(opsi_2 === tahun){
+     	    jumlah = targetHabis * 360 * hasil;
+      }else{
+     	  alert("masukan dengan benar ya!!");        //tidak memenuhi syarat
+      }
+     //opsi ketiga
+           if(opsi_3 === kg_One){         
+              total = 1000 * juminput;
+               ubah =  jumlah / 1000;            //cuma utuk alert    
+        	      total = total - jumlah;         
+        	      total = total / 1000;
+        	      alert("Jumlah ternak = "+jumTernak+" ekor"+              //keterangan alertt
+        	      "\nTarget Habis = "+targetHabis+" "+opsi_2+"\nJumlah pasokan = "+
+        	      +juminput+" kg"+"\nSisa pasokan = "+total+" kg"+"\n\njadi, jumlah"+
+        	       " pakan ternak dalam waktu "+targetHabis+" "+opsi_2+" adalah "+
+        	       ubah+" kg untuk "+jumTernak+" ekor.\n\nTerimah kasih..");
+          }else if(opsi_3 === g_One){            	   
+        	     ubah= jumlah / 1000;
+        	     total = juminput - jumlah; 
+        	      alert("Jumlah ternak = "+jumTernak+" ekor"+
+        	      "\nTarget Habis = "+targetHabis+" "+opsi_2+"\nJumlah pasokan = "+
+        	      +juminput+" g"+"\nSisa pasokan = "+total+" g"+"\n\njadi, jumlah"+
+        	      " pakan ternak dalam waktu "+targetHabis+" "+opsi_2+" adalah "+
+        	       ubah+" kg untuk "+jumTernak+" ekor.\n\nTerimah kasih..");
+          }else{
+         	     alert("masukan angka dengan benar!!");
+           }  
+      // opsi pertama  
+    }else if (opsi === g){
+            hasil = jumpakan * jumTernak;     
+        //untuk opsi kedua          
+            if(opsi_2 === hari){                          //memilih habis pakan
+     	         jumlah = targetHabis * hasil;
+           }else if(opsi_2 === minggu){
+     	         jumlah = targetHabis * 7 * hasil;
+           }else if(opsi_2 === bulan){
+     	         jumlah = targetHabis * 30 * hasil;
+           }else if(opsi_2 === tahun){
+     	         jumlah = targetHabis * 360 * hasil;
+           }else{
+     	         alert("masukan dengan benar ya!!");
+           }
+     //opsi ketiga
+             if(opsi_3 === kg_One){
+             	  ubah = jumlah / 1000; 	          //pengubahan ke kg
+             	  ubah_g = ubah * 1000 ;           //ubah ke g untuk alert
+      	         total = juminput * 1000;             
+        	       total = total - jumlah;
+        	         alert("Jumlah ternak = "+jumTernak+" ekor"+
+        	         "\nTarget Habis = "+targetHabis+" "+opsi_2+"\nJumlah pasokan = "+
+        	         +juminput+" kg"+"\nSisa pasokan = "+total+" g"+"\n\njadi, jumlah"+
+        	         " pakan ternak dalam waktu "+targetHabis+" "+opsi_2+" adalah "+
+        	         ubah+" kg atau "+ubah_g+" g untuk "+jumTernak+" ekor.\n\nTerimah kasih..");
+            }else if(opsi_3 === g_One){
+            	        ubah = jumlah / 1000;
+            	        ubah_g = ubah * 1000;        	     
+          	          total = juminput * 1000;
+          	          total = total / 1000;
+        	            total = total - jumlah;
+        	              alert("Jumlah ternak = "+jumTernak+" ekor"+
+        	              "\nTarget Habis = "+targetHabis+" "+opsi_2+"\nJumlah pasokan = "+
+        	              +juminput+" kg"+"\nSisa pasokan = "+total+" g"+"\n\njadi, jumlah"+
+        	              " pakan ternak dalam waktu "+targetHabis+" "+opsi_2+" adalah "+
+        	              ubah+" kg atau "+ubah_g+" g untuk "+jumTernak+" ekor.\n\nTerimah kasih..");
+                  }else{
+         	            alert("masukan angka dengan benar!!");            //tidak memenuhi syarat
+                   } 
+      }else{
+         alert("isi dengan benar");             //tidak memenuhi syarat pada pemilihan pertama
+        }  
+}
+
+function tombolhapus(){                                      //tombol hapus
+ document.getElementById('jumlahTernak').value="";           //menghapus textfield padajumlah ternak
+ document.getElementById('targetHabis').value="";            //menghapus textfield pada target habis
+ document.getElementById('jumlahInput').value="";            //menghapus textfield pada jumlah pasokan pakan
+ document.getElementById('jumlahPakan').value="";            //menghapus textfield pada  jumlah pakan ternak perahari
+}
+</script>
+</body>
+</html>
